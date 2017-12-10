@@ -2,8 +2,7 @@
 
 import os
 
-TEMPLATE = '''
-#!python3
+TEMPLATE = '''#!python3
 
 
 def main():
@@ -33,7 +32,7 @@ def main():
         if dir_name in existing_files:
             continue
         os.mkdir(dir_name)
-        with open(f'{i}/{i}.py', 'w+') as code, open(f'{i}/{i}.txt', 'w+') as in_file:
+        with open(f'{i}/{i}.py', 'w') as code, open(f'{i}/{i}.txt', 'w') as in_file:
             print(TEMPLATE.format(i), file=code)
 
 
