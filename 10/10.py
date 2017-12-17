@@ -30,37 +30,36 @@ def main():
         print(answer, file=f_out)
 
         # Part 2
-        suffix = [17, 31, 73, 47, 23]
-        lengths = [ord(c) for c in line.strip()] + suffix
-        # Test cases
-        # lengths = suffix
-        # lengths = [ord(c) for c in 'AoC 2017'] + suffix
-        # lengths = [ord(c) for c in '1,2,3'] + suffix
-        # lengths = [ord(c) for c in '1,2,4'] + suffix
-        circle_size = 256
-        circle = list(range(0, circle_size))
-        position = 0
-        skip_size = 0
-        for i in range(64):
-            for length in lengths:
-                if length == 0:
-                    position = (position + length + skip_size) % circle_size
-                    skip_size += 1
-                    continue
-                for i, j in zip(range(position, position + length // 2), range(position + length - 1, position - 1, -1)):
-                    i %= circle_size
-                    j %= circle_size
-                    circle[i], circle[j] = circle[j], circle[i]
-                position = (position + length + skip_size) % circle_size
-                skip_size += 1
-
-        dense_hash = []
-        for group in grouper(16, circle):
-            dense_hash.append(reduce(operator.xor, group))
-
-        final_hash = ''.join(['{:0>2x}'.format(n) for n in dense_hash])
+        final_hash = knot_hash(line.strip())
         print(final_hash)
         print(final_hash, file=f_out)
+
+
+def knot_hash(in_str):
+    suffix = [17, 31, 73, 47, 23]
+    lengths = [ord(c) for c in in_str] + suffix
+    circle_size = 256
+    circle = list(range(0, circle_size))
+    position = 0
+    skip_size = 0
+    for i in range(64):
+        for length in lengths:
+            if length == 0:
+                position = (position + length + skip_size) % circle_size
+                skip_size += 1
+                continue
+            for i, j in zip(range(position, position + length // 2), range(position + length - 1, position - 1, -1)):
+                i %= circle_size
+                j %= circle_size
+                circle[i], circle[j] = circle[j], circle[i]
+            position = (position + length + skip_size) % circle_size
+            skip_size += 1
+
+    dense_hash = []
+    for group in grouper(16, circle):
+        dense_hash.append(reduce(operator.xor, group))
+
+    return ''.join(['{:0>2x}'.format(n) for n in dense_hash])
 
 
 def grouper(n, iterable, fillvalue=None):
