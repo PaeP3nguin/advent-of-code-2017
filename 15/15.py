@@ -5,9 +5,9 @@ from tqdm import tqdm
 
 def main():
     with open('15.txt', 'r') as f, open('15_out.txt', 'w') as f_out:
-        a_line, bee_line = f.readlines()
-        a_first = int(a_line.strip().split()[-1])
-        b_first = int(bee_line.strip().split()[-1])
+        # Puzzle inputs
+        a_first = 591
+        b_first = 393
 
         a_factor = 16807
         b_factor = 48271

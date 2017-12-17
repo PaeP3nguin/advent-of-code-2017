@@ -5,9 +5,10 @@ from collections import defaultdict
 
 def main():
     with open('3_out.txt', 'w') as f_out:
-        # Part 1
+        # Puzzle input
         square = 289326
 
+        # Part 1
         side_len = math.ceil(math.sqrt(square))
         if side_len % 2 == 0:
             side_len += 1

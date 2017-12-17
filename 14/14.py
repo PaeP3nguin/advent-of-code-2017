@@ -6,8 +6,9 @@ from functools import reduce
 
 
 def main():
-    with open('14.txt', 'r') as f, open('14_out.txt', 'w') as f_out:
-        in_str = f.readline().strip()
+    with open('14_out.txt', 'w') as f_out:
+        # Puzzle input
+        in_str = 'ffayrhll'
 
         grid = []
         for i in range(128):

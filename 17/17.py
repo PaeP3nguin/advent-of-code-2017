@@ -4,6 +4,7 @@ from tqdm import tqdm
 
 def main():
     with open('17_out.txt', 'w') as f_out:
+        # Puzzle input
         steps = 303
 
         # Part 1
